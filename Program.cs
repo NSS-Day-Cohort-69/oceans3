@@ -10,13 +10,22 @@ create team member creation logic in a while loop
     when valid team member is created, add to list
     break loop when blank name is entered 
 Display team member amount using .Count on team member list
-foreach on list of team members to display each members info*/
+foreach on list of team members to display each members info
+*/
+/* Phase 3:
+    Initialize bank difficulty int as 100
+    Remove logic for displaying team member information and count
+    Sum skill levels of all team members and store
+    Compare skill level sum to bank difficulty
+        If Skill Level is greater, print victory message
+        Else, print failure message
+*/
 
 bool keepLooping = true;
 List<TeamMember> teamMembers = new List<TeamMember>();
 
-Console.WriteLine("Plan Your Heist!");
 
+Console.WriteLine("Plan Your Heist!");
 while(keepLooping)
 {
     bool validResult = false;
@@ -31,7 +40,6 @@ while(keepLooping)
     teamMember.Name = response;
     while (!validResult)
     {
-
         try
         {
             Console.WriteLine("With a maximum of 50, what is the team member's skill level?");
@@ -50,7 +58,6 @@ while(keepLooping)
         {
             Console.WriteLine("That was not a valid response. Your response needs to be a number, dumbdumb.");
         }
-
     }
     validResult = false;
     while (!validResult)
@@ -73,18 +80,18 @@ while(keepLooping)
         {
             Console.WriteLine("That was not a valid response. Please enter a decimal. Stupid.");
         }
-
-
     }
     teamMembers.Add(teamMember);
 }
 
 
-Console.WriteLine($"There {(teamMembers.Count == 1 ? $"is {teamMembers.Count} member" : $"are {teamMembers.Count} members")} on the team!");
-foreach(TeamMember teamMember in teamMembers)
+int BankDifficulty = 100;
+int TeamSkillLevel = teamMembers.Sum(teamMember => teamMember.SkillLevel);
+
+if (TeamSkillLevel > BankDifficulty)
 {
-    Console.WriteLine(@$"
-    Name: {teamMember.Name}
-    Skill Level: {teamMember.SkillLevel}
-    Courage Factor: {teamMember.CourageFactor}");
+    Console.WriteLine("You got your hands on monopoly money, great job!");
+} else 
+{
+    Console.WriteLine("Not even your mother loves you now, failures.");
 }
