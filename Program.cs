@@ -20,13 +20,19 @@ foreach on list of team members to display each members info
         If Skill Level is greater, print victory message
         Else, print failure message
 */
+/* Phase 4:
+initialize Random int luck variable between -10 and 10
+add luck to bank difficulty
+display team combined skill level
+display bank difficulty
+*/
 
 bool keepLooping = true;
 List<TeamMember> teamMembers = new List<TeamMember>();
 
 
 Console.WriteLine("Plan Your Heist!");
-while(keepLooping)
+while (keepLooping)
 {
     bool validResult = false;
     TeamMember teamMember = new TeamMember();
@@ -84,14 +90,19 @@ while(keepLooping)
     teamMembers.Add(teamMember);
 }
 
-
-int BankDifficulty = 100;
+Random random = new Random();
+int luckValue = random.Next(-10, 11);
+int BankDifficulty = 100 + luckValue;
 int TeamSkillLevel = teamMembers.Sum(teamMember => teamMember.SkillLevel);
+
+Console.WriteLine($"Total Team Skill Level: {TeamSkillLevel}");
+Console.WriteLine($"Bank Difficulty: {BankDifficulty}\n");
 
 if (TeamSkillLevel > BankDifficulty)
 {
     Console.WriteLine("You got your hands on monopoly money, great job!");
-} else 
+}
+else
 {
     Console.WriteLine("Not even your mother loves you now, failures.");
 }
