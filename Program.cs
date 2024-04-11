@@ -96,7 +96,18 @@ while (keepLooping)
 }
 
 Console.WriteLine("Please choose number of times to run heist!");
-int trialRunCount = int.Parse(Console.ReadLine());
+int trialRunCount = 0;
+while(trialRunCount == 0)
+{
+    try
+    {
+        trialRunCount = int.Parse(Console.ReadLine());
+    }
+    catch(FormatException)
+    {
+        Console.WriteLine("Please enter an integer");
+    }
+}
 
 Random random = new Random();
 int TeamSkillLevel = teamMembers.Sum(teamMember => teamMember.SkillLevel);
