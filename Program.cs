@@ -137,6 +137,8 @@ while(trialRunCount == 0)
 
 Random random = new Random();
 int TeamSkillLevel = teamMembers.Sum(teamMember => teamMember.SkillLevel);
+int winCount = 0;
+int lossCount = 0;
 
 for(int i = 0; i < trialRunCount; i++)
 {
@@ -150,9 +152,14 @@ for(int i = 0; i < trialRunCount; i++)
     if (TeamSkillLevel > BankDifficulty)
     {
         Console.WriteLine("You got your hands on monopoly money, great job!\n");
+        winCount++;
     }
     else
     {
         Console.WriteLine("Not even your mother loves you now, failures.\n");
+        lossCount++;
     }
 }
+
+Console.WriteLine($"Total Wins: {winCount}");
+Console.WriteLine($"Total Losses: {lossCount}");
