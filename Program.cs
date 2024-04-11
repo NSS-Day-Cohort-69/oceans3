@@ -1,16 +1,16 @@
 ﻿/*Phase 1:
-console.writeline a greeting
-create class to store team member name, courage factor, and skill level
-write line (x3) to get the team member details from the user and store it for later use
-writeline the class properties
+    console.writeline a greeting
+    create class to store team member name, courage factor, and skill level
+    write line (x3) to get the team member details from the user and store it for later use
+    writeline the class properties
 */
 /*Phase 2: 
-Create a list to store team members
-create team member creation logic in a while loop
-    when valid team member is created, add to list
-    break loop when blank name is entered 
-Display team member amount using .Count on team member list
-foreach on list of team members to display each members info
+    Create a list to store team members
+    create team member creation logic in a while loop
+        when valid team member is created, add to list
+        break loop when blank name is entered 
+    Display team member amount using .Count on team member list
+    foreach on list of team members to display each members info
 */
 /* Phase 3:
     Initialize bank difficulty int as 100
@@ -21,15 +21,23 @@ foreach on list of team members to display each members info
         Else, print failure message
 */
 /* Phase 4:
-initialize Random int luck variable between -10 and 10
-add luck to bank difficulty
-display team combined skill level
-display bank difficulty
+    initialize Random int luck variable between -10 and 10
+    add luck to bank difficulty
+    display team combined skill level
+    display bank difficulty
 */
 /*Phase 5:
-Prompt user number of times the program should run
-Adjust program to run through loop the amount of times the user has selected
-Run scenario multiple times using a loop
+    Prompt user number of times the program should run
+    Adjust program to run through loop the amount of times the user has selected
+    Run scenario multiple times using a loop
+*/
+/*Phase 6:
+    Prompt user for bank's difficulty level
+    Initialize variables for tracking wins and losses at 0
+    In each scenario loop
+        If win, increment win count
+        If loss, increment loss count
+    Display wins and losses
 */
 
 bool keepLooping = true;
@@ -37,6 +45,24 @@ List<TeamMember> teamMembers = new List<TeamMember>();
 
 
 Console.WriteLine("Plan Your Heist!");
+
+
+int bankLevel = 0;
+Console.WriteLine("\nHow difficult is the bank?");
+while (bankLevel == 0)
+{
+    Console.WriteLine("Difficulty:");
+    try
+    {
+        bankLevel = int.Parse(Console.ReadLine().Trim());
+    }
+    catch (FormatException)
+    {
+        Console.WriteLine("Please input an integer!");
+    }
+}
+
+
 while (keepLooping)
 {
     bool validResult = false;
@@ -115,7 +141,7 @@ int TeamSkillLevel = teamMembers.Sum(teamMember => teamMember.SkillLevel);
 for(int i = 0; i < trialRunCount; i++)
 {
     int luckValue = random.Next(-10, 11);
-    int BankDifficulty = 100 + luckValue;
+    int BankDifficulty = bankLevel + luckValue;
 
     Console.WriteLine($"Trial run #:{i + 1}");
     Console.WriteLine($"Total Team Skill Level: {TeamSkillLevel}");
