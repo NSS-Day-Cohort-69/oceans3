@@ -26,6 +26,11 @@ add luck to bank difficulty
 display team combined skill level
 display bank difficulty
 */
+/*Phase 5:
+Prompt user number of times the program should run
+Adjust program to run through loop the amount of times the user has selected
+Run scenario multiple times using a loop
+*/
 
 bool keepLooping = true;
 List<TeamMember> teamMembers = new List<TeamMember>();
@@ -90,19 +95,27 @@ while (keepLooping)
     teamMembers.Add(teamMember);
 }
 
+Console.WriteLine("Please choose number of times to run heist!");
+int trialRunCount = int.Parse(Console.ReadLine());
+
 Random random = new Random();
-int luckValue = random.Next(-10, 11);
-int BankDifficulty = 100 + luckValue;
 int TeamSkillLevel = teamMembers.Sum(teamMember => teamMember.SkillLevel);
 
-Console.WriteLine($"Total Team Skill Level: {TeamSkillLevel}");
-Console.WriteLine($"Bank Difficulty: {BankDifficulty}\n");
+for(int i = 0; i < trialRunCount; i++)
+{
+    int luckValue = random.Next(-10, 11);
+    int BankDifficulty = 100 + luckValue;
 
-if (TeamSkillLevel > BankDifficulty)
-{
-    Console.WriteLine("You got your hands on monopoly money, great job!");
-}
-else
-{
-    Console.WriteLine("Not even your mother loves you now, failures.");
+    Console.WriteLine($"Trial run #:{i + 1}");
+    Console.WriteLine($"Total Team Skill Level: {TeamSkillLevel}");
+    Console.WriteLine($"Bank Difficulty: {BankDifficulty}\n");
+
+    if (TeamSkillLevel > BankDifficulty)
+    {
+        Console.WriteLine("You got your hands on monopoly money, great job!\n");
+    }
+    else
+    {
+        Console.WriteLine("Not even your mother loves you now, failures.\n");
+    }
 }
